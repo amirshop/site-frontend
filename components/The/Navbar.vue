@@ -1,26 +1,21 @@
 <script setup lang="ts">
 const links = [
   {
-    label: "Profile",
+    label: "Home",
+    to: "/",
     avatar: {
       src: "https://avatars.githubusercontent.com/u/739984?v=4",
     },
-    badge: 100,
   },
   {
-    label: "Installation",
+    label: "Shop",
     icon: "i-heroicons-home",
-    to: "/getting-started/installation",
+    to: "/shop",
   },
   {
-    label: "Horizontal Navigation",
+    label: "Contact us",
     icon: "i-heroicons-chart-bar",
-    to: "/components/horizontal-navigation",
-  },
-  {
-    label: "Command Palette",
-    icon: "i-heroicons-command-line",
-    to: "/components/command-palette",
+    to: "/contact",
   },
 ];
 </script>
