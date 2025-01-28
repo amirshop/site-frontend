@@ -6,28 +6,10 @@ export default defineEventHandler(async (event) => {
     // const id = params?.id
 
     const id = getRouterParam(event, "id");
-    console.log(id);
-    console.log(id);
-    console.log(id);
-    console.log(id);
-    console.log(id);
-    console.log(id);
-    console.log(id);
-    console.log(id);
-    console.log(id);
-    console.log(id);
-    console.log(id);
-    console.log(id);
-    console.log(id);
-    console.log(id);
-    console.log(id);
-    console.log(id);
-    console.log(id);
-    console.log(id);
-    console.log(id);
+
     
   // Validate the ID (optional, based on your requirements)
-  if (!) {
+  if (!id) {
     throw createError({
       statusCode: 400,
       statusMessage: "Product ID is required",

@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     "@nuxt/ui",
     "@vueuse/nuxt",
     "@vite-pwa/nuxt",
+    "nuxt-lodash",
   ],
   image: {
     format: ["webp"],

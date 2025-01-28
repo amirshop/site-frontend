@@ -1,6 +1,12 @@
+
+
 export const useProductStore = defineStore("product", () => {
   const product = ref({});
   const products = ref({});
   const carts = ref([]);
-  return { product, products, carts };
+  const getProducts = async()=>{
+    const { data } = await useFetch("/api/products");
+    products.value = data.value
+  }
+  return { product, products, carts, getProducts };
 });
