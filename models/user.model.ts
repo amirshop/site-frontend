@@ -4,8 +4,7 @@ const schema = mongoose.Schema;
 
 const userSchema = new schema({
   id: {
-    type: Number,
-    required: true,
+    type: mongoose.Schema.Types.ObjectId,
   },
   email: {
     type: String,
@@ -20,11 +19,11 @@ const userSchema = new schema({
     required: true,
   },
   name: {
-    firstname: {
+    first: {
       type: String,
       required: true,
     },
-    lastname: {
+    last: {
       type: String,
       required: true,
     },

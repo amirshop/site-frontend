@@ -10,9 +10,9 @@
       />
       <UForm
         class="space-y-4 w-full"
-        :schema="schema"
+        :schema="registerSchema"
         :state="auth"
-        @submit="onSubmit"
+        @submit.prevent="onSubmit"
       >
         <UFormGroup label="Username" name="username" required>
           <UInput v-model="auth.username" type="text" />
@@ -20,6 +20,18 @@
 
         <UFormGroup label="Password" name="password" required>
           <UInput v-model="auth.password" type="password" />
+        </UFormGroup>
+
+        <UFormGroup label="First name" name="name.first" required>
+          <UInput v-model="auth.name.first" type="text" />
+        </UFormGroup>
+
+        <UFormGroup label="Last name" name="name.last" required>
+          <UInput v-model="auth.name.last" type="text" />
+        </UFormGroup>
+
+        <UFormGroup label="Email" name="email" required>
+          <UInput v-model="auth.email" type="email" />
         </UFormGroup>
 
         <div class="space-x-4">
@@ -36,33 +48,36 @@
   </section>
 </template>
 <script setup lang="ts">
-import { z } from "zod";
 import type { FormSubmitEvent } from "#ui/types";
+import {
+  registerSchema,
+  type RegisterSchemaType,
+} from "~/schemes/register.schema";
 
 definePageMeta({
   layout: "auth",
 });
-const schema = z.object({
-  username: z.string().min(3),
-  password: z.string().min(6, "Must be at least 6 characters"),
-});
-type Schema = z.output<typeof schema>;
 
-const auth = reactive({
-  username: "amir",
-  password: "123456",
+const auth = reactive<RegisterSchemaType>({
+  username: "amirrr1987",
+  password: "amir12",
+  email: "amir@amir.amir",
+  name: {
+    first: "amir",
+    last: "maghami",
+  },
 });
 
 const isSubmitting = ref<boolean>(false);
 
-const onSubmit = async (event: FormSubmitEvent<Schema>) => {
+const onSubmit = async (event: FormSubmitEvent<RegisterSchemaType>) => {
   isSubmitting.value = true;
   try {
     const { data } = await useFetch("/api/v2/auth/register", {
       method: "POST",
-      body: auth, // به جای JSON.stringify(auth) مستقیماً داده‌ها را ارسال کنید
+      body: auth,
       headers: {
-        "Content-Type": "application/json", // تنظیم هدر Content-Type
+        "Content-Type": "application/json",
       },
     });
     console.log("Login Success:", data);

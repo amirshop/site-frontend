@@ -1,11 +1,11 @@
-export interface CartModel {
+export interface CartInterface {
   id: number;
   userId: number;
   date: number;
-  products: ProductInCartModel[];
+  products: ProductInCartInterface[];
 }
 
-export interface ProductInCartModel {
+export interface ProductInCartInterface {
   productId: number;
   quantity: number;
 }

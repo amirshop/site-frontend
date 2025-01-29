@@ -12,7 +12,7 @@
       </ClientOnly>
       <UForm
         class="space-y-4 w-full"
-        :schema="schema"
+        :schema="loginSchema"
         :state="auth"
         @submit.prevent="onSubmit"
       >
@@ -43,15 +43,12 @@
 <script setup lang="ts">
 import { z } from "zod";
 import type { FormSubmitEvent } from "#ui/types";
+import { loginSchema, type LoginSchemaType } from "~/schemes/login.schema";
 
 definePageMeta({
   layout: "auth",
 });
-const schema = z.object({
-  username: z.string().min(3),
-  password: z.string().min(6, "Must be at least 6 characters"),
-});
-type Schema = z.output<typeof schema>;
+
 
 const auth = reactive({
   username: "mor_2314",
@@ -60,7 +57,7 @@ const auth = reactive({
 
 const isSubmitting = ref<boolean>(false);
 
-const onSubmit = async (event: FormSubmitEvent<Schema>) => {
+const onSubmit = async (event: FormSubmitEvent<LoginSchemaType>) => {
   isSubmitting.value = true;
   try {
     const { data } = await useFetch("/api/v2/auth/login", {

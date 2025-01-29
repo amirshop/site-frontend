@@ -2,6 +2,7 @@ import { connectDB } from "~/utils/db";
 import User from "~/models/user.model";
 import bcrypt from "bcrypt";
 import { z } from "zod";
+import _ from "lodash";
 export default defineEventHandler(async (event) => {
   await connectDB();
   const body = await readBody(event);
@@ -18,21 +19,25 @@ export default defineEventHandler(async (event) => {
 
     const hashedPassword = await bcrypt.hash(
       body.password,
-      bcrypt.genSaltSync(10) // استفاده از Salt با قدرت بالاتر
+      bcrypt.genSaltSync(10)
     );
-    // ایجاد کاربر جدید
+
     const newUser = new User({
-      username: body.username,
+      ...body,
       password: hashedPassword,
     });
+    console.log(newUser);
+    console.log(newUser);
+    console.log(newUser);
+    console.log(newUser);
 
-    // ذخیره کاربر جدید
     const savedUser = await newUser.save();
-    return savedUser;
-
-    // return { message: "Registration successful", savedUser };
+const xxx = _.omit(savedUser, ["password", "__v"])
+    return {
+      message: "Registration successful",
+      data: xxx,
+    };
   } catch (error) {
-    // اگر خطا اتفاق افتاد، ارسال خطای مناسب
     return { error };
     // throw createError({
     //   statusCode: 500,

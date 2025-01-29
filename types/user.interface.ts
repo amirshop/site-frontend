@@ -1,27 +1,27 @@
-export interface UserModel {
+export interface UserInterface {
   id: number;
   email: string;
   username: string;
   password: string;
-  name: NameModel;
-  address?: GeolocationModel;
+  name: NameInterface;
+  address?: AddressInterface;
   phone?: string;
 }
 
-export interface AddressModel {
+export interface AddressInterface {
   city?: string;
   street?: string;
   number?: number;
   zipcode?: string;
-  geolocation?: Geolocation;
+  geolocation?: GeolocationInterface;
 }
 
-export interface GeolocationModel {
+export interface GeolocationInterface {
   lat?: string;
   long?: string;
 }
 
-export interface NameModel {
+export interface NameInterface {
   firstname: string;
   lastname: string;
 }
