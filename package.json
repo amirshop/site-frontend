@@ -20,7 +20,8 @@
     "nuxt": "^3.15.1",
     "pinia": "^2.3.0",
     "vue": "latest",
-    "vue-router": "latest"
+    "vue-router": "latest",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "nuxt-lodash": "^2.5.3"
