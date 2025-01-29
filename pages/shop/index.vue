@@ -26,7 +26,7 @@
 <script setup lang="ts">
 const productStore = useProductStore();
 const router = useRouter();
-const { data: products } = await useFetch("/api/products");
+const { data: products } = await useFetch("/api/v1/products");
 
 const addToCart = async (id: string) => {
   // await router.push(`/shop/${id}`);
