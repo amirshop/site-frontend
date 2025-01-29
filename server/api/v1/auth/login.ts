@@ -1,0 +1,14 @@
+import { http } from "~/utils/http";
+
+export default defineEventHandler(async (event) => {
+  const body = await readBody(event);
+  try {
+    const { data } = await http.post("/auth/login", body);
+    return data;
+  } catch (error) {
+    throw createError({
+      statusCode: 500,
+      statusMessage: "Failed to login",
+    });
+  }
+});

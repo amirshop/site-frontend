@@ -1,5 +1,3 @@
-
-
 export const useProductStore = defineStore("product", () => {
   const product = ref({});
   const products = ref({});

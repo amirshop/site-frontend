@@ -1,13 +1,13 @@
-import axios from "axios";
+import { http } from "~/utils/http";
 
 export default defineEventHandler(async (event) => {
   try {
-    const {data} = await axios.get("https://fakestoreapi.com/products");
+    const { data } = await http.get("/users");
     return data;
   } catch (error) {
     throw createError({
       statusCode: 500,
-      statusMessage: "Failed to fetch products",
+      statusMessage: "Failed to fetch users",
     });
   }
 });

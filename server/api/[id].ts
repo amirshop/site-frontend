@@ -24,7 +24,7 @@ export default defineEventHandler(async (event) => {
     return response.data;
   } catch (error) {
     const err = error as AxiosError;
-    console.error("Error fetching product:", error);
+    // console.error("Error fetching product:", error);
 
     // Handle errors and return an appropriate response
     throw createError({
