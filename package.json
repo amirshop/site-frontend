@@ -17,13 +17,19 @@
     "@vite-pwa/nuxt": "0.10.6",
     "@vueuse/nuxt": "12.4.0",
     "axios": "^1.7.9",
+    "bcrypt": "^5.1.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.5",
     "nuxt": "^3.15.1",
+    "nuxt-typed-router": "3.7.3",
     "pinia": "^2.3.0",
+    "prettier": "^2.5.x || 3.x",
     "vue": "latest",
     "vue-router": "latest",
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "nuxt-lodash": "^2.5.3"
   }
 }
