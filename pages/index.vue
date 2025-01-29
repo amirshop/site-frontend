@@ -1,6 +1,5 @@
 <template>
   <section>
-    status: {{status}}
     <UContainer>
       <div class="gap-4 sm:gap-6 lg:gap-8 grid md:grid-cols-2 lg:grid-cols-4">
         <template  v-if="status === 'success'">
@@ -13,9 +12,9 @@
               :alt="product.title"
             ></NuxtImg>
           </template>
-          <h4 class="mb-4">{{ useToUpper(product.title) }}</h4>
+          <h4 class="mb-4 text-primary">{{ product.title }}</h4>
           <p>
-            {{ product.description }}
+            {{ useTruncate(product.description,{length: 120}) }}
           </p>
 
           <template #footer>
@@ -45,7 +44,7 @@
   </section>
 </template>
 <script setup lang="ts">
-const { data: products, status } = await useFetch("/api/products");
+const { data: products, status } = await useFetch("/api/v1/products");
 
 const router = useRouter();
 const productStore = useProductStore();
