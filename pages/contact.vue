@@ -92,6 +92,6 @@ export default {
 
 <style scoped>
 .contact-page {
-  background: linear-gradient(to bottom right, #f0f4ff, #e0eaff);
+  /* background: linear-gradient(to bottom right, #f0f4ff, #e0eaff); */
 }
 </style>
