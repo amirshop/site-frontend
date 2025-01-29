@@ -1,18 +1,20 @@
 <template>
   <section class="py-4 md:py-6 lg:py-8 min-h-screen flex items-center">
     <UContainer :ui="containerUi">
-      <UAvatar
+      <ClientOnly>
+        <UAvatar
         src="/images/login.webp"
         alt="Avatar"
         size="3xl"
         :ui="avatarUi"
         class="mb-12"
       />
+      </ClientOnly>
       <UForm
         class="space-y-4 w-full"
         :schema="schema"
         :state="auth"
-        @submit="onSubmit"
+        @submit.prevent="onSubmit"
       >
         <UFormGroup label="Username" name="username" required>
           <UInput v-model="auth.username" type="text" />
@@ -61,7 +63,10 @@ const isSubmitting = ref<boolean>(false);
 const onSubmit = async (event: FormSubmitEvent<Schema>) => {
   isSubmitting.value = true;
   try {
-    const { data } = await http.post("/auth/login", event.data);
+    const { data } = await useFetch("/api/v2/auth/login", {
+      method: 'POST',
+      body: JSON.stringify(event.data),
+    });
     console.log("Login Success:", data);
   } catch (error) {
     console.error("Login Failed:", error);
