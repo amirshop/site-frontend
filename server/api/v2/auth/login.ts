@@ -1,6 +1,7 @@
 import { connectDB } from "~/utils/db";
 import User from "~/models/user.model";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 export default defineEventHandler(async (event) => {
   await connectDB();
@@ -10,31 +11,31 @@ export default defineEventHandler(async (event) => {
     const user = await User.findOne({ username: body.username });
 
     if (!user) {
-      return createError({
+      throw createError({
         statusCode: 401,
-        statusMessage: "User not found",
+        statusMessage: "Invalid user or password",
       });
-      // throw createError({
-      //   statusCode: 401,
-      //   statusMessage: "User not found",
-      // });
     }
 
     const isMatch = await bcrypt.compare(body.password, user.password);
     if (!isMatch) {
       throw createError({
         statusCode: 401,
-        statusMessage: "Invalid password",
+        statusMessage: "Invalid user or password",
       });
     }
 
-    // به جای ارسال کامل کاربر، می‌توانید فقط فیلدهای ضروری را ارسال کنید
+    const token = jwt.sign(
+      { _id: user._id, username: user.username },
+      process.env.JWT_SECRET as string,
+      { expiresIn: "7h" }
+    );
     return {
       message: "Login successful",
       user: { _id: user._id, username: user.username },
+      token,
     };
   } catch (error) {
-    // اضافه کردن جزئیات بیشتر برای خطای 500
     throw createError({
       statusCode: 500,
       statusMessage: (error as Error).message || "Failed to login",
