@@ -1,20 +1,18 @@
 <template>
   <section class="py-4 md:py-6 lg:py-8 min-h-screen flex items-center">
-    <UContainer :ui="containerUi">
-      <ClientOnly>
-        <UAvatar
+    <UContainer>
+      <UAvatar
         src="/images/login.webp"
         alt="Avatar"
         size="3xl"
         :ui="avatarUi"
         class="mb-12"
       />
-      </ClientOnly>
       <UForm
         class="space-y-4 w-full"
         :schema="loginSchema"
         :state="auth"
-        @submit.prevent="onSubmit"
+        @submit.prevent="executeLogin"
       >
         <UFormGroup label="Username" name="username" required>
           <UInput v-model="auth.username" type="text" />
@@ -25,8 +23,10 @@
         </UFormGroup>
 
         <div class="space-x-4">
-          <UButton type="submit" :loading="isSubmitting">Login</UButton>
-          <UButton type="reset" variant="outline">Reset</UButton>
+          <UButton type="submit" :loading="status === 'pending'">Login</UButton>
+          <UButton type="reset" variant="outline" @click="clearForm"
+            >Reset</UButton
+          >
         </div>
       </UForm>
 
@@ -40,40 +40,53 @@
     </UContainer>
   </section>
 </template>
+
 <script setup lang="ts">
+import { ref } from "vue";
 import { z } from "zod";
 import type { FormSubmitEvent } from "#ui/types";
 import { loginSchema, type LoginSchemaType } from "~/schemes/login.schema";
-
+import { useLocalStorage } from "@vueuse/core";
 definePageMeta({
   layout: "auth",
 });
 
+const auth = ref<LoginSchemaType>({} as LoginSchemaType);
 
-const auth = reactive({
-  username: "mor_2314",
-  password: "83r5^_",
-});
-
-const isSubmitting = ref<boolean>(false);
-
-const onSubmit = async (event: FormSubmitEvent<LoginSchemaType>) => {
-  isSubmitting.value = true;
-  try {
-    const { data } = await useFetch("/api/v2/auth/login", {
-      method: 'POST',
-      body: JSON.stringify(event.data),
+const token = useLocalStorage("token", "");
+const { error, status, execute, clear, data } = useAsyncData(
+  "login",
+  async () => {
+    return await $fetch("/api/v2/auth/login", {
+      method: "POST",
+      body: auth.value,
     });
-    console.log("Login Success:", data);
-  } catch (error) {
-    console.error("Login Failed:", error);
-  } finally {
-    isSubmitting.value = false;
+  },
+  { immediate: false }
+);
+const toast = useToast();
+const executeLogin = async () => {
+  await execute();
+  if (error.value) {
+    toast.add({
+      title: `Error ${error.value.statusCode}`,
+      description: error.value.statusMessage,
+      color: "red",
+    });
+  } else {
+    token.value = data.value?.token ?? "";
+    useRouter().push("/");
+    toast.add({
+      title: "Login successful",
+      description: "Welcome back!",
+      color: "green",
+    });
   }
 };
 
-const containerUi = {
-  //   base: "grid grid-cols-[1fr_max-content_1fr] gap-x-4 sm:gap-x-6 lg:gap-x-8",
+const clearForm = () => {
+  clear();
+  auth.value = {} as LoginSchemaType;
 };
 
 const avatarUi = {
