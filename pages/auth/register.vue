@@ -1,6 +1,6 @@
 <template>
   <section class="py-4 md:py-6 lg:py-8 min-h-screen flex items-center">
-    <UContainer :ui="containerUi">
+    <UContainer>
       <UAvatar
         src="/images/login.webp"
         alt="Avatar"
@@ -12,7 +12,7 @@
         class="space-y-4 w-full"
         :schema="registerSchema"
         :state="auth"
-        @submit.prevent="onSubmit"
+        @submit.prevent="executeRegister"
       >
         <UFormGroup label="Username" name="username" required>
           <UInput v-model="auth.username" type="text" />
@@ -35,8 +35,12 @@
         </UFormGroup>
 
         <div class="space-x-4">
-          <UButton type="submit" :loading="isSubmitting">Register </UButton>
-          <UButton type="reset" variant="outline">Reset</UButton>
+          <UButton type="submit" :loading="status == 'pending'"
+            >Register
+          </UButton>
+          <UButton type="reset" variant="outline" @click="clearForm"
+            >Reset</UButton
+          >
         </div>
       </UForm>
 
@@ -48,7 +52,6 @@
   </section>
 </template>
 <script setup lang="ts">
-import type { FormSubmitEvent } from "#ui/types";
 import {
   registerSchema,
   type RegisterSchemaType,
@@ -58,38 +61,58 @@ definePageMeta({
   layout: "auth",
 });
 
-const auth = reactive<RegisterSchemaType>({
-  username: "amirrr1987",
-  password: "amir12",
-  email: "amir@amir.amir",
+const auth = ref<RegisterSchemaType>({
+  username: "",
+  password: "",
+  email: "",
   name: {
-    first: "amir",
-    last: "maghami",
+    first: "",
+    last: "",
   },
 });
 
-const isSubmitting = ref<boolean>(false);
-
-const onSubmit = async (event: FormSubmitEvent<RegisterSchemaType>) => {
-  isSubmitting.value = true;
-  try {
-    const { data } = await useFetch("/api/v2/auth/register", {
+const { error, status, execute, clear } = useAsyncData(
+  "register",
+  async () => {
+    return await $fetch("/api/v2/auth/register", {
       method: "POST",
-      body: auth,
-      headers: {
-        "Content-Type": "application/json",
-      },
+      body: auth.value,
     });
-    console.log("Login Success:", data);
-  } catch (error) {
-    console.error("Login Failed:", error);
-  } finally {
-    isSubmitting.value = false;
+  },
+  { immediate: false }
+);
+
+const toast = useToast();
+
+const executeRegister = async () => {
+  await execute();
+  if (error.value) {
+    toast.add({
+      title: `Error ${error.value.statusCode}`,
+      description: error.value.statusMessage,
+      color: "red",
+    });
+  } else {
+    toast.add({
+      title: "Register successful",
+      description: "Welcome back!",
+      color: "green",
+    });
+    clearForm();
   }
 };
 
-const containerUi = {
-  //   base: "grid grid-cols-[1fr_max-content_1fr] gap-x-4 sm:gap-x-6 lg:gap-x-8",
+const clearForm = () => {
+  clear();
+  auth.value = {
+    username: "",
+    password: "",
+    email: "",
+    name: {
+      first: "",
+      last: "",
+    },
+  };
 };
 
 const avatarUi = {
