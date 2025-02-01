@@ -11,6 +11,7 @@ export default defineNuxtConfig({
     "nuxt-lodash",
     "nuxt-typed-router",
   ],
+
   image: {
     format: ["webp"],
     quality: 50,
