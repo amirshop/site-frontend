@@ -10,7 +10,9 @@
                 :alt="product.title"
             ></NuxtImg>
           </template>
-          <h4>{{ product.title }}</h4>
+          <ULink :to="`/shop/products/${product.id}`">
+            <h4>{{ product.title }}</h4>
+          </ULink>
           <p>
             {{ product.description }}
           </p>
