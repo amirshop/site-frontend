@@ -1,5 +1,6 @@
 import { connectDB } from "~/utils/db";
 import Product from "~/models/product.model";
+import { ProductInterface } from "~/interfaces/product.interface";
 export default defineEventHandler(async (event) => {
   await connectDB();
   try {
