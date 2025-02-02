@@ -1,4 +1,7 @@
 <template>
+
+
+
   <UHorizontalNavigation :links="links" :ui="horizontalNavigationUi" />
   <UBadge>
     {{ productStore.carts.length }}
@@ -16,6 +19,13 @@ const links = [
       avatar: {
         src: "https://avatars.githubusercontent.com/u/739984?v=4",
       },
+      items: [
+        {
+          label: "Shop",
+          icon: "i-heroicons-home",
+          to: "/shop",
+        }
+      ]
     },
     {
       label: "Shop",
@@ -29,14 +39,12 @@ const links = [
     },
   ],
   [
-
-
-  {
-    label: "Login",
-    icon: "i-heroicons-user",
-    to: "/auth/login",
-  },
-  ]
+    {
+      label: "Login",
+      icon: "i-heroicons-user",
+      to: "/auth/login",
+    },
+  ],
 ];
 
 const horizontalNavigationUi = {

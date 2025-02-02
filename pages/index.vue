@@ -3,27 +3,23 @@
     <UContainer>
       <div class="gap-4 sm:gap-6 lg:gap-8 grid md:grid-cols-2 lg:grid-cols-4">
         <template v-if="status === 'success'">
-          <UCard v-for="product in products" :key="product._id">
-            <template #header>
+          <ULink
+            v-for="product in products"
+            :key="product._id"
+            :to="{ name: 'shop-products-id', params: { id: product._id } }"
+          >
+            <UCard>
               <NuxtImg
-                class="w-96 h-96 object-scale-down"
+                class="w-full h-44 object-scale-down"
                 :src="product.image"
                 :alt="product.title"
-              ></NuxtImg>
-            </template>
-            <ULink
-              :to="{ name: 'shop-products-id', params: { id: product._id } }"
-            >
-              <h4 class="mb-4 text-primary">{{ product.title }}</h4>
-            </ULink>
-            <p>
-              {{ useTruncate(product.description, { length: 120 }) }}
-            </p>
-
-            <template #footer>
-              <UButton @click="addToCart(product._id)">Add</UButton>
-            </template>
-          </UCard>
+              />
+              <h4 class="mb-2 text-primary">{{ product.title }}</h4>
+              <p class="min-h-24 overflow-hidden">
+                {{ useTruncate(product.description, { length: 120 }) }}
+              </p>
+            </UCard>
+          </ULink>
         </template>
         <template v-if="status === 'pending'">
           <UCard v-for="product in 4" :key="product">
