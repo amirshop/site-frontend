@@ -5,10 +5,9 @@ import Product from "./product.model";
 import User from "./user.model";
 
 const cartSchema = new schema({
-  id: {
-    type: Number,
-    required: true,
-  },
+  // _id: {
+  //     type: mongoose.Schema.Types.ObjectId,
+  //   },
   userId: {
     type: schema.Types.Number,
     ref: User,

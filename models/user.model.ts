@@ -4,9 +4,9 @@ const schema = mongoose.Schema;
 
 const userSchema = new schema(
   {
-    id: {
-      type: mongoose.Schema.Types.ObjectId,
-    },
+    // _id: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    // },
     email: {
       type: String,
       required: true,
