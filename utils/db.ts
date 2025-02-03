@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const MONGODB_URI = import.meta.env.DATABASE_MONGO_URI;
+const MONGODB_URI = import.meta.env.MONGO_URI;
 
 export const connectDB = async () => {
   try {

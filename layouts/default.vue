@@ -1,6 +1,5 @@
 <template>
-<!--  <TheNavbar />-->
-  <TheMyNav />
+  <TheNavbar />
   <main>
     <slot />
   </main>

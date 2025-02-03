@@ -1,11 +1,10 @@
-import { connectDB } from "~/utils/db";
-import Product from "~/models/product.model";
-import type {CustomError} from "~/interfaces/serverError.interface";
+import { CustomError } from "~/interfaces/serverError.interface";
+import { ProductService } from "~/server/services/product/product.service";
 export default defineEventHandler(async (event) => {
-  const id = getRouterParam(event, "id");
-  await connectDB();
+  const body = await readBody(event)
+  const products = new ProductService();
   try {
-    return await Product.findById(id);
+    return await products.createProduct(body);
   } catch (error) {
     const { message, statusCode } = error as CustomError;
     throw createError({
