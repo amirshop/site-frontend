@@ -25,7 +25,7 @@
             <div class="relative">
               <NuxtImg
                 :src="product.image"
-                class="w-full aspect-[4/3] object-cover"
+                class="w-full aspect-[4/3] object-contain"
                 :alt="product.title"
               />
               <div
