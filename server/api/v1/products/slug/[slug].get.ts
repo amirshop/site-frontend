@@ -1,5 +1,5 @@
 import { CustomError } from "~/interfaces/serverError.interface";
-import { ProductService } from "~/server/services/product/product.service";
+import { ProductService } from "../../../../modules/product/product.service";
 
 export default defineEventHandler(async (event) => {
   const slug = getRouterParam(event, "slug");

@@ -1,10 +1,10 @@
 import type { ProductInterface } from "~/interfaces/product.interface";
 import { ProductModel } from "./product.model";
-import { connectDB } from "~/server/db";
+import { connectDB } from "../../db";
 
-export class ProductService {
+export class ProductRepository {
   constructor() {
-    this.setupDB().then((r) => console.log("r"));
+    this.setupDB().then(() => console.log());
   }
 
   async setupDB() {

@@ -74,5 +74,5 @@
 import type { ProductInterface } from "~/interfaces/product.interface";
 
 const { data: products } =
-  await useFetch<ProductInterface[]>("/api/v1/products");
+  await useFetch<ProductInterface[]>("http://localhost:5500/api/v2/products");
 </script>
