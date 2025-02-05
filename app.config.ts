@@ -1,5 +1,8 @@
 export default defineAppConfig({
   ui: {
-    primary: "purple",
+    primary: "green",
+    container: {
+      constrained: '!container'
+    }
   },
 });

@@ -16,7 +16,7 @@
       </div>
     </div>
     <div
-      class="absolute inset-0 bg-gradient-to-r from-blue-600/80 to-purple-600/80"
+      class="absolute inset-0 bg-gradient-to-r from-blue-600/80 to-primary-600/80"
     ></div>
   </section>
 </template>

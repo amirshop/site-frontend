@@ -3,7 +3,7 @@
     <template #header>
       <div class="text-center space-y-2">
         <h2
-          class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent"
+          class="text-3xl font-bold bg-gradient-to-r from-primary-600 to-pink-600 bg-clip-text text-transparent"
         >
           Welcome Back
         </h2>
@@ -51,7 +51,7 @@
         Don't have an account?
         <NuxtLink
           to="/auth/register"
-          class="text-purple-600 hover:text-purple-800 font-medium"
+          class="text-primary-600 hover:text-primary-800 font-medium"
         >
           Create one
         </NuxtLink>

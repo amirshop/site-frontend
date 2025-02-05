@@ -14,7 +14,7 @@
         <ULink
           to="/"
           target="_blank"
-          active-class="text-white hover:bg-purple-700 p-2 rounded"
+          active-class="text-white hover:bg-primary-700 p-2 rounded"
           inactive-class="text-white hover:bg-primary-dark p-2 rounded"
           class="flex items-center justify-center h-14"
         >
@@ -23,7 +23,7 @@
 
         <!-- Dashboard -->
         <ULink
-          active-class="text-white hover:bg-purple-700 p-2 rounded"
+          active-class="text-white hover:bg-primary-700 p-2 rounded"
           inactive-class="text-white hover:bg-primary-dark p-2 rounded"
           class="flex items-center justify-between"
           to="/panel/dashboard"

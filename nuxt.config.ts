@@ -11,17 +11,18 @@ export default defineNuxtConfig({
     "nuxt-lodash",
     "nuxt-typed-router",
     "@nuxt/ui",
+    "nuxt-swiper",
   ],
   app: {
     head: {
-      script: [],
+      script: [
+        {
+          src: "https://cdn.jsdelivr.net/npm/flowbite@3.1.1/dist/flowbite.min.js",
+        },
+      ],
     },
   },
-
-  // css: ["~/assets/css/main.css"],
-  vite: {
-    // plugins: [tailwindcss()],
-  },
+  // css: ["swiper/css", "swiper/css/effect-coverflow", "swiper/css/pagination"],
 
   image: {
     format: ["webp"],

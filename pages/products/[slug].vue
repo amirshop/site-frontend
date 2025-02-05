@@ -3,15 +3,15 @@
     <div class="container mx-auto px-4">
       <!-- Breadcrumb -->
       <nav class="mb-8 text-sm">
-        <NuxtLink to="/" class="text-gray-500 hover:text-purple-600"
+        <NuxtLink to="/" class="text-gray-500 hover:text-primary-600"
           >Home</NuxtLink
         >
         <span class="mx-2 text-gray-400">/</span>
-        <NuxtLink to="/products" class="text-gray-500 hover:text-purple-600"
+        <NuxtLink to="/products" class="text-gray-500 hover:text-primary-600"
           >Products</NuxtLink
         >
         <span class="mx-2 text-gray-400">/</span>
-        <span class="text-purple-600">{{ product?.title }}</span>
+        <span class="text-primary-600">{{ product?.title }}</span>
       </nav>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -49,7 +49,7 @@
         <div class="bg-white rounded-2xl p-8 shadow-lg space-y-8">
           <div>
             <span
-              class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full"
+              class="bg-primary-100 text-primary-800 text-sm font-medium px-3 py-1 rounded-full"
               >New Arrival</span
             >
             <h1 class="text-4xl font-bold text-gray-900 mt-4 mb-2">
@@ -70,7 +70,7 @@
 
           <div class="border-t border-b py-6">
             <div class="flex items-center justify-between mb-6">
-              <span class="text-3xl font-bold text-purple-600"
+              <span class="text-3xl font-bold text-primary-600"
                 >${{ product?.price }}</span
               >
               <div class="flex items-center space-x-2">
@@ -82,11 +82,11 @@
             <div class="flex items-center space-x-4 mb-6">
               <label class="text-gray-700 font-medium">Quantity:</label>
               <div
-                class="flex items-center border-2 border-purple-200 rounded-lg"
+                class="flex items-center border-2 border-primary-200 rounded-lg"
               >
                 <button
                   @click="quantity > 1 && quantity--"
-                  class="px-4 py-2 hover:bg-purple-50 transition"
+                  class="px-4 py-2 hover:bg-primary-50 transition"
                 >
                   −
                 </button>
@@ -98,7 +98,7 @@
                 />
                 <button
                   @click="quantity++"
-                  class="px-4 py-2 hover:bg-purple-50 transition"
+                  class="px-4 py-2 hover:bg-primary-50 transition"
                 >
                   +
                 </button>
@@ -107,12 +107,12 @@
 
             <div class="grid grid-cols-2 gap-4">
               <button
-                class="w-full bg-purple-600 text-white py-4 rounded-xl font-medium hover:bg-purple-700 transform hover:-translate-y-0.5 transition-all"
+                class="w-full bg-primary-600 text-white py-4 rounded-xl font-medium hover:bg-primary-700 transform hover:-translate-y-0.5 transition-all"
               >
                 Add to Cart
               </button>
               <button
-                class="w-full bg-purple-50 text-purple-600 py-4 rounded-xl font-medium hover:bg-purple-100 transform hover:-translate-y-0.5 transition-all"
+                class="w-full bg-primary-50 text-primary-600 py-4 rounded-xl font-medium hover:bg-primary-100 transform hover:-translate-y-0.5 transition-all"
               >
                 Add to Wishlist
               </button>
@@ -159,9 +159,9 @@
               <span class="text-gray-600">30-day money-back guarantee</span>
             </div>
             <div class="flex items-center space-x-3">
-              <div class="p-2 bg-purple-50 rounded-full">
+              <div class="p-2 bg-primary-50 rounded-full">
                 <svg
-                  class="w-5 h-5 text-purple-500"
+                  class="w-5 h-5 text-primary-500"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"

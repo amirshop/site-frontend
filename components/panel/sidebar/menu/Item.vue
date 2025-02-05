@@ -1,7 +1,7 @@
 <template>
   <NuxtLink
-    exactActiveClass="text-red-500 bg-purple-700"
-    class="p-2 rounded text-white hover:bg-purple-700"
+    exactActiveClass="text-red-500 bg-primary-700"
+    class="p-2 rounded text-white hover:bg-primary-700"
     :to="props.link"
   >
     <div class="flex items-center gap-x-2">
